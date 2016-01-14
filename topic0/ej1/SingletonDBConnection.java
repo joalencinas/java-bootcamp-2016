@@ -1,6 +1,5 @@
 package topic0.ej1;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 
 
@@ -19,7 +18,7 @@ public class SingletonDBConnection {
 		String password = "myPass";	
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection(url,username,password);
+			DriverManager.getConnection(url,username,password);
 			System.out.println("Connection created\n");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,9 +33,6 @@ public class SingletonDBConnection {
 		
 	}
 	
-	public static Connection getConnection() {
-		return conn;
-	}
 
 
 }
