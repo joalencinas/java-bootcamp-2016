@@ -1,16 +1,17 @@
 package topic0.ej1;
 
-import java.sql.DriverManager;
+//import java.sql.DriverManager;
 
 
 
 public class SingletonDBConnection {
 
 	private static SingletonDBConnection singletonCon = null;
-	private static Connection conn;
 	
 	
 	private SingletonDBConnection() {
+/*      
+        HERE goes the actual connection code
 		
 		String driver = "";
 		String url = "";
@@ -23,9 +24,10 @@ public class SingletonDBConnection {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+*/
 	}
 	
-	public static SingletonDBConnection getSingletonCon() {
+	public static SingletonDBConnection getInstance() {
 		if (singletonCon == null) {
 			singletonCon = new SingletonDBConnection();
 		}
@@ -33,6 +35,19 @@ public class SingletonDBConnection {
 		
 	}
 	
+    public static String getConnection() {
+        return ("\n Connected.. \n");
+        
+    
+    }
+    
+    public static void main (String[] args)
+    {
+        SingletonDBConnection singleconn = SingletonDBConnection.getInstance();
+        System.out.println(singleconn.getConnection());
+        return;
+    }
 
 
 }
+
