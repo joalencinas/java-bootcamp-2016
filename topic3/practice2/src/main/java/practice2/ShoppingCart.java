@@ -2,11 +2,13 @@ package practice2;
 
 public interface ShoppingCart {
     
-    public void addToCart(Product product, int amount);
+    public void addToCart(Product product);
     public void removeFromCart(Product product);
     public void clearCart();
     public void endPurchase();
-    public void getSubTotal();
-    public void getAmountOfProducts();
-    public void getSubTotal;
+    public double getSubTotal();
+    public int getAmountOfProducts();
+    public boolean exists(Product product);
+    public boolean isDuplicated(Product product);
 }
+

@@ -2,10 +2,11 @@ package practice2;
 
 public interface Product {
     
-    public int getPrice();
-    public void setPrice();
+    public void setPrice(double price);
+    public double getPrice();
     public String getName();
-    public String setDescription();
-    public void setName();
+    public void setName(String name);
+    public String getDescription();
+    public void setDescription(String description);
 }
 
