@@ -15,7 +15,7 @@ public class SomeProduct implements Product {
             throw new RuntimeException("Product price must be a positive value");
         }
     }
-
+    
     public SomeProduct(double price, String name, String description) {
         
         if (price > 0) {
