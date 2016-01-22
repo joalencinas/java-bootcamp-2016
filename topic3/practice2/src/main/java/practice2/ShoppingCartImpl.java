@@ -7,17 +7,38 @@ import java.util.*;
      *any type of data persistence (data is stored locally).
      */
 public class ShoppingCartImpl implements ShoppingCart {
-    
+    /**
+     * Private field. It represents how many Products are there in the Cart.
+     */
     private int amountOfProducts;
+    
+    /**
+     * Private field, represents the sum of all the contained Product's prices.
+     */
     private double subTotal;
+    
+    /**
+     * Private field that contains the references to the Product objects
+     * stored on a generic type list.
+     */
     private List<Product> listOfProducts;
     
+    /**
+     * On this particular implementation, constructor inicializes on zero
+     * the fields amountOfProducts and subTotal, and the field listOfProducts
+     * is implemented as a LinkedList. Therefore, the data is stored
+     * locally (no data persistence routine is used).
+     */
     public ShoppingCartImpl() {
         amountOfProducts = 0;
-        subTotal = 0;
+        subTotal = 0.0d;
         listOfProducts = new LinkedList();
     }
     
+    /**
+     * This method adds a specified product to the cart, only if the Product
+     * object is not null and is not present already in the Cart.
+     */
     @Override
     public void addToCart(Product product) {
         if (!listOfProducts.contains(product) && product != null) {
@@ -27,6 +48,10 @@ public class ShoppingCartImpl implements ShoppingCart {
         }
     }
     
+    /**
+     * Removes the specified Product from the Cart. If the specified instance
+     * doesn't exist on the cart, or the cart is empty, it does nothing.
+     */
     @Override
     public void removeFromCart(Product product) {
         if (amountOfProducts > 0 && subTotal > 0.0d && listOfProducts.contains(product)) {
@@ -36,6 +61,9 @@ public class ShoppingCartImpl implements ShoppingCart {
         }
     }
     
+    /**
+     * Removes all Products from the Cart, and sets it like it was brand new.
+     */
     @Override
     public void clearCart() {
         listOfProducts.clear();
@@ -43,6 +71,11 @@ public class ShoppingCartImpl implements ShoppingCart {
         amountOfProducts = 0;
     }
     
+    /**
+     * Virtually "ends" the purchase, in this particular implementation it
+     * just prints some information about the purchase: each Product
+     * price and name, and the Purchase total.
+     */
     @Override
     public void endPurchase() {
         Product prod;
