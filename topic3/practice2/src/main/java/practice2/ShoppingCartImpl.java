@@ -88,21 +88,34 @@ public class ShoppingCartImpl implements ShoppingCart {
         System.out.printf("\nTOTAL:\t $%f\n", subTotal);
     }
     
+    /**
+     * Returns the Shopping cart sub-total
+     */
     @Override
     public double getSubTotal() {
         return subTotal;
     }
     
+    /**
+     * Returns how many products are there in the cart
+     */
     @Override
     public int getAmountOfProducts() {
         return amountOfProducts;
     }
     
+    /**
+     * Returs true if the specified product instance exists on the cart.
+     */
     @Override
     public boolean exists(Product product) {
         return listOfProducts.contains(product);
     }
     
+    /**
+     * Returns true if the given product instance is duplicated on the Cart, or
+     * if it doesn't exist on the cart at all. Returns false otherwise.
+     */
     @Override
     public boolean isDuplicated(Product product) {
         return (listOfProducts.indexOf(product) != listOfProducts.lastIndexOf(product));
