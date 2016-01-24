@@ -23,9 +23,12 @@ public class Proxy {
             HERE you might write some code to control the access rights of the 
             class that's trying to execute the Query.
         */
+        if (realConnection == null) {
+            realConnection = new DBConnection();
+            System.out.println("Connection created using Proxy");
+        }
         
         System.out.println("Executing query trough proxy");
         realConnection.executeQuery(query);
     }
-
 }
