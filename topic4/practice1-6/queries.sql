@@ -147,15 +147,17 @@ select COURSEName,
     where COURSEName= 'Algorithms and Data Structures' 
     order by STUDENTLastName;
 
---Practice 4
+-- Practice 4
 
 select (select count(*) from NOTES
     join COURSE on courseID=NOTESCourse 
-    where COURSEName='Number Theory' and finalNOTE >= 4) /
+    where courseID=1 and finalNOTE >= 4) /
     (select count(*) from NOTES
     join COURSE on courseID=NOTESCourse
     where courseID=1) * 100
     as PercentageOfStudentsApproved;
+
+-- Practice 5
 
 select  TEACHERLastName,
         TEACHERFirstName,
