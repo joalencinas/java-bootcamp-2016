@@ -1,0 +1,50 @@
+
+use highschool
+
+db.student.insert(
+    [
+        {_id: 1, firstName: "Juan", lastName: "Perez", dateOfBirth: new Date("1993-02-04")},
+        {_id: 2, firstName: "Pedro", lastName: "Ramirez", dateOfBirth: new Date("1992-01-31")},
+        {_id: 3, firstName: "Carlos", lastName: "Garcia", dateOfBirth: new Date("1981-11-23")},
+        {_id: 4, firstName: "Alfredo", lastName: "Di Stefano", dateOfBirth: new Date("1926-07-04")},
+        {_id: 5, firstName: "El Pato", lastName: "Donald", dateOfBirth: new Date("1934-06-09")},
+        {_id: 6, firstName: "Carlos", lastName: "Bilardo", dateOfBirth: new Date("1939-03-19")},
+        {_id: 7, firstName: "Roger", lastName: "Federer", dateOfBirth: new Date("1981-08-08")},
+        {_id: 8, firstName: "Juan Martin", lastName: "Del Potro", dateOfBirth: new Date("1988-09-23")},
+        {_id: 9, firstName: "Oscar", lastName: "Gomez", dateOfBirth: new Date("1982-10-11")},
+        {_id: 10, firstName: "Diego Armando", lastName: "Maradona", dateOfBirth: new Date("1960-10-30")},
+        {_id: 11, firstName: "Pablo", lastName: "Marmol", dateOfBirth: new Date("1932-12-14")},
+        {_id: 12, firstName: "Carlos", lastName: "Gonzalez", dateOfBirth: new Date("1992-06-13")},
+        {_id: 13, firstName: "Camilo", lastName: "Lopez", dateOfBirth: new Date("1996-09-22")},
+        {_id: 14, firstName: "Gonzalo", lastName: "Ruiz", dateOfBirth: new Date("1995-01-14")},
+        {_id: 15, firstName: "Tomas", lastName: "Rodriguez", dateOfBirth: new Date("1991-09-09")},
+        {_id: 16, firstName: "Marcos", lastName: "Torrejon", dateOfBirth: new Date("1978-11-22")},
+        {_id: 17, firstName: "Mauro", lastName: "Paez", dateOfBirth: new Date("1987-10-30")},
+        {_id: 18, firstName: "Gaston", lastName: "Gomez", dateOfBirth: new Date("1988-03-24")},
+        {_id: 19, firstName: "Ignacio", lastName: "Acosta", dateOfBirth: new Date("1991-09-18")},
+        {_id: 20, firstName: "Luis", lastName: "Suarez", dateOfBirth: new Date("1985-05-13")},
+        {_id: 21, firstName: "Luis Cesar", lastName: "Menotti", dateOfBirth: new Date("1938-10-22")},
+        {_id: 22, firstName: "Walter", lastName: "Cano", dateOfBirth: new Date("1980-09-22")},
+        {_id: 23, firstName: "Adrian", lastName: "Paenza", dateOfBirth: new Date("1949-05-09")},
+        {_id: 24, firstName: "Andres", lastName: "Iniesta", dateOfBirth: new Date("1984-05-11")},
+        {_id: 25, firstName: "Javier", lastName: "Mascherano", dateOfBirth: new Date("1984-06-08")},
+        {_id: 26, firstName: "Marcelo", lastName: "Bielsa", dateOfBirth: new Date("1955-07-21")},
+        {_id: 27, firstName: "Carlos", lastName: "Tevez", dateOfBirth: new Date("1984-02-05")},
+        {_id: 28, firstName: "Gaston", lastName: "Turus", dateOfBirth: new Date("1980-05-27")},
+        {_id: 29, firstName: "Juan Carlos", lastName: "Olave", dateOfBirth: new Date("1976-02-21")},
+        {_id: 30, firstName: "Mario", lastName: "Kempes", dateOfBirth: new Date("1954-07-15")}
+    ]
+)
+
+db.teachers.insert(
+    [
+        {_id: 1, firstName: "Edsger", lastName: "Dijkstra", dateOfBirth: new Date("1930-05-11")},
+        {_id: 2, firstName: "George", lastName: "Boole", dateOfBirth: new Date("1815-11-02")},
+        {_id: 3, firstName: "Alan", lastName: "Turing", dateOfBirth: new Date("1912-06-23")}
+    ]
+)
+
+
+
+
+
