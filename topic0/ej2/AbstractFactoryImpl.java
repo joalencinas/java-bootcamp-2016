@@ -1,7 +1,8 @@
 
 
-public class AbstractFactoryImpl extends AbstractFactory {
+public class AbstractFactoryImpl implements AbstractFactory {
 
+    @Override
     public ConnectionFactory getConnectionFactory(String type) {
     
         ConnectionFactory factory = null;
