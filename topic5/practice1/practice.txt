@@ -50,14 +50,11 @@ db.teachers.insert(
 db.courses.insert(
     [
         {_id: 1, courseName: "Algorithms and Data Structures", hoursPerWeek: 8, 
-        schedule: [{day: "Monday", starts: "09:00", ends: "13:00"},
-            {day: "Wednesday", starts: "09:00", ends: "13:00"}]} , 
-        {_id: 2, courseName: "Number Theory", hoursPerWeek: 6, 
-        schedule: [{day: "Tuesday", starts: "09:00", ends: "13:00"},
-            {day: "Thursday", starts: "09:00", ends: "11:00"}]} , 
+        schedule: [ "Monday 09:00 - 13:00" , "Wednesday 09:00 - 13:00" ] },
+        {_id: 2, courseName: "Number Theory" , hoursPerWeek: 6, 
+        schedule: [ "Tuesday 09:00 - 13:00" , "Thursday 09:00 - 11:00" ] } , 
         {_id: 3, courseName: "Cryptography", hoursPerWeek: 6, 
-        schedule: [{day: "Thursday", starts: "11:00", ends: "13:00"},
-            {day: "Friday", starts: "09:00", ends: "13:00"}]}
+        schedule: [ "Thursday 11:00 - 13:00" , "Friday 09:00 - 13:00" ] }
     ]
 )
 

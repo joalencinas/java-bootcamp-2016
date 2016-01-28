@@ -1,5 +1,9 @@
 package practice2-4;
 
+import org.mongodb.morphia.annotations.*;
+
+
+@Entity
 public class Student {
     
     @Id private int id;
