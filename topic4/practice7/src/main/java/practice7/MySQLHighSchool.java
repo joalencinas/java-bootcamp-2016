@@ -12,9 +12,14 @@ public class MySQLHighSchool {
     private Connection connection = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
+    private boolean first = false;
 
+    /**
+     *Reads Schedule for teacher whose Id is 1, returns FALSE if the result
+     *set returned by executeQuery is empty.
+     */
 
-    public void readTeacherSchedule() throws Exception {
+    public boolean readTeacherSchedule() throws Exception {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
@@ -25,10 +30,10 @@ public class MySQLHighSchool {
                 "TEACHERFirstName, day, starts, ends, COURSEName " +
                 "from TEACHER join COURSE on COURSEAssignedTeacher=teacherID " +
                 "join SCHEDULE on SCHEDULECourseID=courseID where teacherID=1;");
-            boolean first = true;
+            first = false;
             while (resultSet.next()) {
-                if (first) {
-                    first = false;
+                if (!first) {
+                    first = true;
                     System.out.printf("\nTeacher: %s, %s\nSchedule: \n", resultSet.getString(1), 
                         resultSet.getString(2));
                 }
@@ -42,6 +47,7 @@ public class MySQLHighSchool {
             throw e;
         } finally {
             close();
+            return first;
         }
     }
 
@@ -60,5 +66,5 @@ public class MySQLHighSchool {
         } catch (Exception e) {
         }
     }
-
+    
 }
