@@ -1,0 +1,140 @@
+
+use highschool
+
+db.students.insert(
+    [
+        {_id: 1, firstName: "Juan", lastName: "Perez", dateOfBirth: "1993-02-04"},
+        {_id: 2, firstName: "Pedro", lastName: "Ramirez", dateOfBirth: "1992-01-31"},
+        {_id: 3, firstName: "Carlos", lastName: "Garcia", dateOfBirth: "1981-11-23"},
+        {_id: 4, firstName: "Alfredo", lastName: "Di Stefano", dateOfBirth: "1926-07-04"},
+        {_id: 5, firstName: "El Pato", lastName: "Donald", dateOfBirth: "1934-06-09"},
+        {_id: 6, firstName: "Carlos", lastName: "Bilardo", dateOfBirth: "1939-03-19"},
+        {_id: 7, firstName: "Roger", lastName: "Federer", dateOfBirth: "1981-08-08"},
+        {_id: 8, firstName: "Juan Martin", lastName: "Del Potro", dateOfBirth: "1988-09-23"},
+        {_id: 9, firstName: "Oscar", lastName: "Gomez", dateOfBirth: "1982-10-11"},
+        {_id: 10, firstName: "Diego Armando", lastName: "Maradona", dateOfBirth: "1960-10-30"},
+        {_id: 11, firstName: "Pablo", lastName: "Marmol", dateOfBirth: "1932-12-14"},
+        {_id: 12, firstName: "Carlos", lastName: "Gonzalez", dateOfBirth: "1992-06-13"},
+        {_id: 13, firstName: "Camilo", lastName: "Lopez", dateOfBirth: "1996-09-22"},
+        {_id: 14, firstName: "Gonzalo", lastName: "Ruiz", dateOfBirth: "1995-01-14"},
+        {_id: 15, firstName: "Tomas", lastName: "Rodriguez", dateOfBirth: "1991-09-09"},
+        {_id: 16, firstName: "Marcos", lastName: "Torrejon", dateOfBirth: "1978-11-22"},
+        {_id: 17, firstName: "Mauro", lastName: "Paez", dateOfBirth: "1987-10-30"},
+        {_id: 18, firstName: "Gaston", lastName: "Gomez", dateOfBirth: "1988-03-24"},
+        {_id: 19, firstName: "Ignacio", lastName: "Acosta", dateOfBirth: "1991-09-18"},
+        {_id: 20, firstName: "Luis", lastName: "Suarez", dateOfBirth: "1985-05-13"},
+        {_id: 21, firstName: "Luis Cesar", lastName: "Menotti", dateOfBirth: "1938-10-22"},
+        {_id: 22, firstName: "Walter", lastName: "Cano", dateOfBirth: "1980-09-22"},
+        {_id: 23, firstName: "Adrian", lastName: "Paenza", dateOfBirth: "1949-05-09"},
+        {_id: 24, firstName: "Andres", lastName: "Iniesta", dateOfBirth: "1984-05-11"},
+        {_id: 25, firstName: "Javier", lastName: "Mascherano", dateOfBirth: "1984-06-08"},
+        {_id: 26, firstName: "Marcelo", lastName: "Bielsa", dateOfBirth: "1955-07-21"},
+        {_id: 27, firstName: "Carlos", lastName: "Tevez", dateOfBirth: "1984-02-05"},
+        {_id: 28, firstName: "Gaston", lastName: "Turus", dateOfBirth: "1980-05-27"},
+        {_id: 29, firstName: "Juan Carlos", lastName: "Olave", dateOfBirth: "1976-02-21"},
+        {_id: 30, firstName: "Mario", lastName: "Kempes", dateOfBirth: "1954-07-15"}
+    ]
+)
+
+db.teachers.insert(
+    [
+        {_id: 1, firstName: "Edsger", lastName: "Dijkstra", dateOfBirth: "1930-05-11",
+        assignedCourses: [ db.courses.find()[0].courseName , db.courses.find()[1].courseName ] },
+        {_id: 2, firstName: "George", lastName: "Boole", dateOfBirth: "1815-11-02",
+        assignedCourses: [ db.courses.find()[1].courseName ] },
+        {_id: 3, firstName: "Alan", lastName: "Turing", dateOfBirth: "1912-06-23",
+        assignedCourses: [ db.courses.find()[2].courseName ] },
+    ]
+)
+
+db.courses.insert(
+    [
+        {_id: 1, courseName: "Algorithms and Data Structures", hoursPerWeek: 8, 
+        schedule: [{day: "Monday", starts: "09:00", ends: "13:00"},
+            {day: "Wednesday", starts: "09:00", ends: "13:00"}]} , 
+        {_id: 2, courseName: "Number Theory", hoursPerWeek: 6, 
+        schedule: [{day: "Tuesday", starts: "09:00", ends: "13:00"},
+            {day: "Thursday", starts: "09:00", ends: "11:00"}]} , 
+        {_id: 3, courseName: "Cryptography", hoursPerWeek: 6, 
+        schedule: [{day: "Thursday", starts: "11:00", ends: "13:00"},
+            {day: "Friday", starts: "09:00", ends: "13:00"}]}
+    ]
+)
+
+db.notes.insert(
+    [
+        {_id: 1, firstName: "Juan", lastName: "Perez", 
+         course_id:1 , firstNote:3 , secondNote:7 , thirdNote:3 , finalNote:4.33},
+        {_id: 2, firstName: "Pedro", lastName: "Ramirez", 
+         course_id:1 , firstNote:8 , secondNote:9 , thirdNote:9 , finalNote:8.33},
+        {_id: 3, firstName: "Carlos", lastName: "Garcia", 
+         course_id:1 , firstNote:1 , secondNote:10 , thirdNote:7 , finalNote:6.0},
+        {_id: 4, firstName: "Alfredo", lastName: "Di Stefano", 
+         course_id:1 , firstNote:5 , secondNote:6 , thirdNote:7 , finalNote:6.0},
+        {_id: 5, firstName: "El Pato", lastName: "Donald", 
+         course_id:1 , firstNote:6 , secondNote:7 , thirdNote:8 , finalNote:7.0},
+        {_id: 6, firstName: "Carlos", lastName: "Bilardo", 
+         course_id:1 , firstNote:5 , secondNote:9 , thirdNote:9 , finalNote:7.66},
+        {_id: 7, firstName: "Roger", lastName: "Federer", 
+         course_id:1 , firstNote:7 , secondNote:7 , thirdNote:7 , finalNote:7.0},
+        {_id: 8, firstName: "Juan Martin", lastName: "Del Potro", 
+         course_id:1 , firstNote:8 , secondNote:8 , thirdNote:8 , finalNote:8.0},
+        {_id: 9, firstName: "Oscar", lastName: "Gomez", 
+         course_id:1 , firstNote:9 , secondNote:9 , thirdNote:9 , finalNote:9.0},
+        {_id: 10, firstName: "Diego Armando", lastName: "Maradona",
+         course_id:1 , firstNote:10 , secondNote:10 , thirdNote:10 , finalNote:10.0},
+        {_id: 11, firstName: "Pablo", lastName: "Marmol", 
+         course_id:2 , firstNote:4 , secondNote:5 , thirdNote:3 , finalNote:4.0},
+        {_id: 12, firstName: "Carlos", lastName: "Gonzalez", 
+         course_id:2 , firstNote:7 , secondNote:5 , thirdNote:9 , finalNote:7.0},
+        {_id: 13, firstName: "Camilo", lastName: "Lopez",
+         course_id:2 , firstNote:5 , secondNote:5 , thirdNote:1 , finalNote:3.66},
+        {_id: 14, firstName: "Gonzalo", lastName: "Ruiz", 
+         course_id:2 , firstNote:9 , secondNote:8 , thirdNote:7 , finalNote:8.0},
+        {_id: 15, firstName: "Tomas", lastName: "Rodriguez", 
+         course_id:2 , firstNote:6 , secondNote:5 , thirdNote:4 , finalNote:5.0},
+        {_id: 16, firstName: "Marcos", lastName: "Torrejon", 
+         course_id:2 , firstNote:9 , secondNote:1 , thirdNote:9 , finalNote:6.33},
+        {_id: 17, firstName: "Mauro", lastName: "Paez", 
+         course_id:2 , firstNote:7 , secondNote:7 , thirdNote:7 , finalNote:7.0},
+        {_id: 18, firstName: "Gaston", lastName: "Gomez", 
+         course_id:2 , firstNote:6 , secondNote:6 , thirdNote:6 , finalNote:6.0},
+        {_id: 19, firstName: "Ignacio", lastName: "Acosta", 
+         course_id:2 , firstNote:9 , secondNote:2 , thirdNote:2 , finalNote:4.33},
+        {_id: 20, firstName: "Luis", lastName: "Suarez", 
+         course_id:2 , firstNote:4 , secondNote:4 , thirdNote:3 , finalNote:3.66},
+        {_id: 21, firstName: "Luis Cesar", lastName: "Menotti", 
+         course_id:3 , firstNote:5 , secondNote:6 , thirdNote:7 , finalNote:6.0},
+        {_id: 22, firstName: "Walter", lastName: "Cano", 
+         course_id:3 , firstNote:3 , secondNote:1 , thirdNote:1 , finalNote:1.66},
+        {_id: 23, firstName: "Adrian", lastName: "Paenza", 
+         course_id:3 , firstNote:9 , secondNote:8 , thirdNote:7 , finalNote:8.0},
+        {_id: 24, firstName: "Andres", lastName: "Iniesta", 
+         course_id:3 , firstNote:7 , secondNote:8 , thirdNote:9 , finalNote:8.0},
+        {_id: 25, firstName: "Javier", lastName: "Mascherano", 
+         course_id:3 , firstNote:9 , secondNote:8 , thirdNote:8 , finalNote:8.33},
+        {_id: 26, firstName: "Marcelo", lastName: "Bielsa", 
+         course_id:3 , firstNote:1 , secondNote:9 , thirdNote:9 , finalNote:6.33},
+        {_id: 27, firstName: "Carlos", lastName: "Tevez", 
+         course_id:3 , firstNote:10 , secondNote:6 , thirdNote:8 , finalNote:8.0},
+        {_id: 28, firstName: "Gaston", lastName: "Turus", 
+         course_id:3 , firstNote:9 , secondNote:2 , thirdNote:10 , finalNote:7.0},
+        {_id: 29, firstName: "Juan Carlos", lastName: "Olave", 
+         course_id:3 , firstNote:8 , secondNote:4 , thirdNote:4 , finalNote:5.33},
+        {_id: 30, firstName: "Mario", lastName: "Kempes", 
+         course_id:3 , firstNote:3 , secondNote:7 , thirdNote:7 , finalNote:5.66}
+    ]
+)
+
+
+--Practice 2:
+
+
+db.notes.find( {finalNote: { $gt: 4}, course_id: 1 } , {_id: 0 , course_id: 0 , firstNote: 0 , secondNote: 0 , thirdNote: 0 , finalNote: 0} ).pretty();
+
+--Practice 3:
+
+db.teachers.find( {_id: 1} , {assignedCourses: 1, _id: 0} ).sort( { assignedCourses:1 } ).pretty()
+
+
+
