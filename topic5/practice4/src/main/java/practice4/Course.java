@@ -1,17 +1,18 @@
-package practice2-4;
+package practice4;
 
 import java.util.*;
 import org.mongodb.morphia.annotations.*;
+import org.bson.types.ObjectId;
 
 @Entity
-public class Course {
+public class Course implements Comparable<Course> {
     
-    @Id private int id;
+    @Id ObjectId id;
     private String courseName;
     private int hoursPerWeek;
-    private String[] schedule;
+    private List<String> schedule;
     
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
     
@@ -31,12 +32,16 @@ public class Course {
         return hoursPerWeek;
     }
     
-    public void setSchedule (String[] newSchedule) {
+    public void setSchedule(List<String> newSchedule) {
         schedule = newSchedule;
     }
     
-    public String getSchedule () {
-        return Array.copyOf(schedule, schedule.length);
+    public List<String> getSchedule() {
+        return schedule;
+    }
+    
+    public int compareTo(Course anotherCourse) {
+        return courseName.compareTo(anotherCourse.getCourseName());
     }
 
 

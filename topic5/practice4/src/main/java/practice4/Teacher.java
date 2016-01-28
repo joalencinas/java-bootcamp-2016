@@ -1,18 +1,19 @@
-package practice2-4;
+package practice4;
 
 import java.util.*;
 import org.mongodb.morphia.annotations.*;
-
+import org.bson.types.ObjectId;
 
 @Entity
 public class Teacher {
     
-    @Id private int id;
+    @Id private ObjectId id;
     private String firstName;
     private String lastName;
-    private String[] assignedCourses;
+    @Reference
+    private List<Course> assignedCourses;
     
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
     
@@ -32,14 +33,14 @@ public class Teacher {
         return lastName;
     }
     
-    public void setAssignedCourses(String[] courses) {
+    public void setAssignedCourses(List<Course> courses) {
 //        if (verifyCourses(courses))
             assignedCourses = courses;
     
     }
     
-    public String[] getAssignedCourses() {
-        return Array.copyOf(assignedCourses, assignedCourses.length);
+    public List<Course> getAssignedCourses() {
+        return assignedCourses;
     }
     
 /*    private boolean verifyCourses(String[] courses) {

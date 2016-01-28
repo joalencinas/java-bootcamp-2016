@@ -1,17 +1,17 @@
-package practice2-4;
+package practice4;
 
 import org.mongodb.morphia.annotations.*;
-
+import org.bson.types.ObjectId;
 
 @Entity
-public class Student {
+public class Student implements Comparable<Student> {
     
-    @Id private int id;
+    @Id private ObjectId id;
     private String firstName;
     private String lastName;
     private String dateOfBirth;
     
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
     
@@ -37,5 +37,13 @@ public class Student {
     
     public String getDateOfBirth() {
         return dateOfBirth;
+    }
+    
+    public int compareTo(Student student) {
+        int result = this.lastName.compareTo(student.lastName);
+        if (result == 0) {
+            result = (this.lastName.compareTo(student.firstName));
+        }
+        return result;
     }
 }

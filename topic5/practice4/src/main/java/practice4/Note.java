@@ -1,45 +1,39 @@
-package practice2-4;
+package practice4;
 
 import org.mongodb.morphia.annotations.*;
+import org.bson.types.ObjectId;
 
 @Entity
 public class Note {
     
-    @Id private int id;
-    private String firstName;
-    private String lastName;
-    private int courseId;
+    @Id private ObjectId id;
+    @Reference
+    private Course course;
+    @Reference
+    private Student student;
     private int firstNote;
     private int secondNote;
     private int thirdNote;
     private double finalNote;
     
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
     
-    public void setFirstName(String firstname) {
-        firstName = firstname;
+    public void setCourse(Course newCourse) {
+        course = newCourse;
     }
     
-    public String getFirstName() {
-        return firstName;
+    public Course getCourse() {
+        return course;
     }
     
-    public void setLastName(String lastname) {
-        lastname = lastName;
+    public void setStudent(Student newStudent) {
+        student = newStudent;
     }
     
-    public String getLastName() {
-        return lastName;
-    }
-    
-    public void setCourseId(int courseid) {
-        courseId = courseid;
-    }
-    
-    public int getCourseId() {
-        return courseId;
+    public Student getStudent() {
+        return student;
     }
     
     public void setFirstNote(int firstnote) {
