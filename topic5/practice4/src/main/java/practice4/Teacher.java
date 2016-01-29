@@ -10,6 +10,7 @@ public class Teacher {
     @Id private ObjectId id;
     private String firstName;
     private String lastName;
+    private String dateOfBirth;
     @Reference
     private List<Course> assignedCourses;
     
@@ -26,16 +27,23 @@ public class Teacher {
     }
     
     public void setLastName(String lastname) {
-        lastname = lastName;
+        lastName = lastname;
     }
     
     public String getLastName() {
         return lastName;
     }
     
+    public void setDateOfBirth(String dateofbirth) {
+        dateOfBirth = dateofbirth;
+    }
+    
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+    
     public void setAssignedCourses(List<Course> courses) {
-//        if (verifyCourses(courses))
-            assignedCourses = courses;
+        assignedCourses = courses;
     
     }
     
@@ -43,17 +51,5 @@ public class Teacher {
         return assignedCourses;
     }
     
-/*    private boolean verifyCourses(String[] courses) {
-        boolean result = true;
-        Array.sort(courses);
-        for (int i = 0; i<courses.length - 1; i++) {
-            if(courses[i] < 1 || courses[i] = courses[i+1]) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
-*/
-
+    
 }
