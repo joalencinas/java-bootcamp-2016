@@ -49,21 +49,9 @@ public class UserRestController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    List<User> readUser(@RequestParam(defaultValue="") String username, 
-        @RequestParam(defaultValue="") String firstName, 
-            @RequestParam(defaultValue="") String lastName) {
+    List<User> readAllUsers() {
         
-        if (username != "") {
-            List<User> result = new LinkedList();
-            result.add(this.userRepository.findOne(username));
-            return result;
-        } else if (firstName != "") {
-            return this.userRepository.findByFirstName(firstName);
-        } else if (lastName != "") {
-            return this.userRepository.findByLastName(lastName);
-        } else {
-            return userRepository.findAll();
-        }
+        return userRepository.findAll();
     }
     
     @RequestMapping(method = RequestMethod.PUT)
@@ -77,9 +65,14 @@ public class UserRestController {
         return userRepository.save(result);
     }
     
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    User readUserByUsername(@PathVariable String username) {
+        return userRepository.findOne(username);
+    }
+    
     @RequestMapping(value = "/{username}", method = RequestMethod.DELETE)
-    void deleteUser(@PathVariable String username) {
-        User result = userRepository.findOne(username);
+    void deleteUser(@RequestBody User user) {
+        User result = userRepository.findOne(user.getUsername());
         if (result == null) {
             throw new RuntimeException("DELETE FAILED: user not found");
         }
