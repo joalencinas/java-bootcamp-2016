@@ -2,7 +2,7 @@ package usersAPI;
 
 import org.springframework.data.annotation.Id;
 
-public class User {
+public class User implements Comparable<User> {
     
     @Id
     private final String username;
@@ -42,6 +42,17 @@ public class User {
         return String.format(
             "User data: username=%s, First Name=%s, Last Name=%s",
             username, firstName, lastName);
+    }
+    
+    @Override
+    public int compareTo(User anotherUser) {
+        int result = 1;
+        if (this.username.compareTo(anotherUser.username) == 0 && 
+                this.firstName.compareTo(anotherUser.firstName) == 0 &&
+                    this.lastName.compareTo(anotherUser.lastName) == 0) {
+            result = 0;
+        }
+        return result;
     }
     
 }
