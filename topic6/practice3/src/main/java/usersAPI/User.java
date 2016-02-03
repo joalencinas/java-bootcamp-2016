@@ -5,8 +5,9 @@ import org.springframework.data.annotation.Id;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.Api;
 
-
+@Api
 public class User implements Comparable<User> {
     
     @Id
