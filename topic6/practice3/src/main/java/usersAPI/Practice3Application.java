@@ -100,7 +100,7 @@ class UserRestController {
         @ApiImplicitParam(name = "user", value = "User object to add", required = true, dataType = "User.class", paramType = "Request Body")
       })
     @ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Success", response = ResponseEntity<?>.class),
+            @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
@@ -125,7 +125,7 @@ class UserRestController {
     @ApiOperation(value = "readAllUsers", nickname = "readAll")
     @RequestMapping(method = RequestMethod.GET)
     @ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Success", response = List<User>.class),
+            @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),

@@ -2,6 +2,11 @@ package usersAPI;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
+
+
 public class User implements Comparable<User> {
     
     @Id
@@ -17,22 +22,33 @@ public class User implements Comparable<User> {
         this.lastName = lastName;
     }
     
+    
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns the username", required = true)
     public String getUsername() {
         return username;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Sets user's firstName", required = true)
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns first name", required = true)
     public String getFirstName() {
         return firstName;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Sets lastName", required = true)
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns user's lastName", required = true)
     public String getLastName() {
         return lastName;
     }
@@ -40,10 +56,12 @@ public class User implements Comparable<User> {
     @Override
     public String toString() {
         return String.format(
-            "User data: username=%s, First Name=%s, Last Name=%s",
+            "User data: username = %s, First Name = %s, Last Name = %s   ",
             username, firstName, lastName);
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Two users are equal if and only if every one of their fields are equal", required = true)
     @Override
     public int compareTo(User anotherUser) {
         int result = 1;
