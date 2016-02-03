@@ -39,7 +39,6 @@ public class UserRESTControllerTest {
     
     @Before
     public void contextLoads() {
-//        restController = new UserRestController(userRepository);
         user1 = userRepository.save(new User("jhoeller", "John1", "Smith1"));
         user2 = userRepository.save(new User("dsyer", "John2", "Smith2"));
         user3 = userRepository.save(new User("pwebb", "John3", "Smith3"));
@@ -69,7 +68,6 @@ public class UserRESTControllerTest {
         restController.deleteUser("jlong");
         User user10 = userRepository.findOne("jlong");
         Assert.assertNull("\n\nController didn't delete the user\n\n", user10);
-//        restController.addUser(user9);
     }
     
     @Test
@@ -104,14 +102,4 @@ public class UserRESTControllerTest {
     
     
 }
-
-
-
-
-
-
-
-
-
-
 
