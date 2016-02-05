@@ -41,8 +41,6 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ResponseHeader;
 
 @SpringBootApplication
-@EnableSwagger2
-@ComponentScan("usersAPI")
 public class Practice3Application {
     @Bean
     CommandLineRunner init(UserRepository userRepository) {
@@ -61,9 +59,14 @@ public class Practice3Application {
     public static void main(String[] args) {
         SpringApplication.run(Practice3Application.class, args);
     }
+}
+// end::runner[]
+
+@EnableSwagger2
+class SwaggerConfig {
     
     @Bean
-    public Docket newsApi() {
+    public Docket usersApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("usersAPI")
                 .apiInfo(apiInfo())
@@ -84,7 +87,6 @@ public class Practice3Application {
                 .build();
     }
 }
-// end::runner[]
 
 
 @RestController
