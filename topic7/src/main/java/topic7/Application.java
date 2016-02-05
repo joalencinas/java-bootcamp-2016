@@ -40,9 +40,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ResponseHeader;
 
+//@ComponentScan("topic7")
 @SpringBootApplication
-@EnableSwagger2
-@ComponentScan("topic7")
 public class Application {
     @Bean
     CommandLineRunner init(UserRepository userRepository, 
@@ -77,6 +76,24 @@ public class Application {
             Product product18 = productRepository.save(new Product("shoe8", 10000, "clothing", "cheap shoe"));
             Product product19 = productRepository.save(new Product("shoe9", 10000, "clothing", "cheap shoe"));
             
+            user1.login("pass1");
+            user1 = userRepository.save(user1);
+            user2.login("pass2");
+            user2 = userRepository.save(user2);
+            user3.login("pass3");
+            user3 = userRepository.save(user3);
+            user4.login("pass4");
+            user4 = userRepository.save(user4);
+            user5.login("pass5");
+            user5 = userRepository.save(user5);
+            user6.login("pass6");
+            user6 = userRepository.save(user6);
+            user7.login("pass7");
+            user7 = userRepository.save(user7);
+            user8.login("pass8");
+            user8 = userRepository.save(user8);
+            
+            
             
         };
     }
@@ -84,6 +101,11 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+}
+// end::runner[]
+
+@EnableSwagger2
+class SwaggerConfig {
     
     @Bean
     public Docket newsApi() {
@@ -107,7 +129,6 @@ public class Application {
                 .build();
     }
 }
-// end::runner[]
 
 
 @RestController
@@ -120,27 +141,22 @@ class UserRestController {
     @ApiOperation(value = "addUser", nickname = "addUser")
     @RequestMapping(method = RequestMethod.POST)
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "user", value = "User object to add", required = true, dataType = "User.class", paramType = "Request Body")
+        @ApiImplicitParam(name = "user", value = "User object to add", 
+            required = true, dataType = "User.class", paramType = "Request Body")
       })
     @ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 200, message = "Success", response = User.class),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")}) 
-    ResponseEntity<?> addUser(@RequestBody User user) {
+    User addUser(@RequestBody User user) {
         if (!this.userRepository.exists(user.getUsername())) {
             User result = userRepository.save(user);
-            
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.setLocation(ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{username}")
-                    .buildAndExpand(result.getUsername()).toUri());
-            return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
-            
+            return result;
         } else {
             System.out.printf("\n\nUsername %s already taken, choose another one\n\n", user.getUsername());
-            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.IM_USED);
+            return null;
         }
     }
     
@@ -159,8 +175,9 @@ class UserRestController {
     @ApiOperation(value = "updateUser", nickname = "updateUser")
     @RequestMapping(method = RequestMethod.PUT)
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "user", value = "User object to update", required = true, dataType = "User.class", paramType = "Request Body")
-      })
+        @ApiImplicitParam(name = "user", value = "User object to update", 
+            required = true, dataType = "User.class", paramType = "Request Body")
+        })
     @ApiResponses(value = { 
             @ApiResponse(code = 200, message = "Success", response = User.class),
             @ApiResponse(code = 401, message = "Unauthorized"),
@@ -184,7 +201,8 @@ class UserRestController {
     @ApiOperation(value = "readUserByUsername", nickname = "readByUsername")
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "username", value = "Username to query", required = true, dataType = "String", paramType = "Path Variable")
+        @ApiImplicitParam(name = "username", value = "Username to query", 
+            required = true, dataType = "String", paramType = "Path Variable")
       })
     @ApiResponses(value = { 
             @ApiResponse(code = 200, message = "Success", response = User.class),
@@ -231,8 +249,24 @@ class UserRestController {
             System.out.printf("\n\nUser to delete \"%s\" not found\n\n", username);
         }
     }
+
     
+    @ApiOperation(value = "loginUser", nickname = "User Login")
     @RequestMapping(value = "/login", method = RequestMethod.PUT)
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "username", value = "User's username", 
+            required = true, dataType = "String", paramType = "Request Body"),
+        @ApiImplicitParam(name = "password", value = "User's password",
+            required = true, dataType = "String", paramType = "Request Body")
+        })
+        
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Success", response = User.class),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")}) 
+    
     boolean loginUser(@RequestBody String username, @RequestBody String password) {
         User user = userRepository.findOne(username);
         boolean result = false;
@@ -240,23 +274,25 @@ class UserRestController {
             result = user.login(password);
             if (result) {
                 System.out.printf("\n\nUser \"%s\" logged in successfully\n\n", username);
+                userRepository.save(user);
             } else {
                 System.out.printf("\n\nWrong password\n\n");
             }
         } else {
             System.out.printf("\n\nUser \"%s\" doesn't exist\n\n", username);
         }
-        userRepository.save(user);
         return result;
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.PUT)
     void logoutUser(@RequestBody User user) {
-        if (userRepository.exists(user.getUsername())) {
-            user.logout();
-            userRepository.save(user);
-        } else {
-            System.out.println("\n\nLOGOUT FAILED: user not found\n\n");
+        if (user != null) {
+            if (userRepository.exists(user.getUsername())) {
+                user.logout();
+                userRepository.save(user);
+            } else {
+                System.out.println("\n\nLOGOUT FAILED: user not found\n\n");
+            }
         }
     }
     
@@ -297,7 +333,7 @@ class UserRestController {
     }
     
     @RequestMapping(value = "/{username}/cart/clear", method = RequestMethod.PUT)
-    List<Product> cleanUserCart(@PathVariable String username) {
+    List<Product> clearUserCart(@PathVariable String username) {
         User user = userRepository.findOne(username);
         if (user != null) {
             if (user.isLoggedIn()) {
@@ -329,19 +365,13 @@ class ProductRestController {
     
     
     @RequestMapping(method = RequestMethod.POST)
-    ResponseEntity<?> addProduct(@RequestBody Product product) {
+    Product addProduct(@RequestBody Product product) {
         if (!productRepository.exists(product.getName())) {
             Product result = productRepository.save(product);
-            
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.setLocation(ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{category}")
-                    .buildAndExpand(result.getCategory()).toUri());
-            return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
-            
+            return result;
         } else {
             System.out.printf("\n\nProduct %s already exists, choose another name\n\n", product.getName());
-            return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.IM_USED);
+            return null;
         }
     }
     

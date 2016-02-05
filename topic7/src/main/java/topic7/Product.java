@@ -3,7 +3,7 @@ package topic7;
 import org.springframework.data.annotation.Id;
 
 
-public class Product {
+public class Product implements Comparable<Product> {
     
     @Id
     private final String name;
@@ -45,6 +45,27 @@ public class Product {
     
     public String getDescription() {
         return description;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format(
+            "Product data: Name = %s, Price = %d, Category = %s, Description = %s   ",
+            name, price, category, description);
+    }
+    
+    @Override
+    public int compareTo(Product anotherProduct) {
+        int result = 1;
+        if (this.name.compareTo(anotherProduct.name) == 0 && 
+              price == anotherProduct.price &&
+                this.category.compareTo(anotherProduct.category) == 0 &&
+                  this.description.compareTo(anotherProduct.description) == 0) {
+            result = 0;
+        } else {
+            result = this.name.compareTo(anotherProduct.name);
+        }
+        return result;
     }
 }
 

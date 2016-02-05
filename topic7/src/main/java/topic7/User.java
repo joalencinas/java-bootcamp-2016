@@ -110,9 +110,13 @@ public class User implements Comparable<User> {
     public int compareTo(User anotherUser) {
         int result = 1;
         if (this.username.compareTo(anotherUser.username) == 0 && 
+              this.password.compareTo(anotherUser.password) == 0 &&
                 this.firstName.compareTo(anotherUser.firstName) == 0 &&
-                    this.lastName.compareTo(anotherUser.lastName) == 0) {
+                  this.lastName.compareTo(anotherUser.lastName) == 0 &&
+                    this.shoppingCart.equals(anotherUser.shoppingCart)) {
             result = 0;
+        } else {
+            result = this.username.compareTo(anotherUser.username);
         }
         return result;
     }
