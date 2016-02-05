@@ -37,15 +37,21 @@ public class User implements Comparable<User> {
         this.online = false;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "User login method. Returns boolean to indicate login success.", required = true)
     public boolean login(String password) {
         online = (this.password.compareTo(password) == 0);
         return online;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "User logout, doesn't check if user was currently logged in.", required = true)
     public void logout() {
         online = false;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Checks if the user is logged in.", required = true)
     public boolean isLoggedIn() {
         return online;
     }
@@ -56,6 +62,9 @@ public class User implements Comparable<User> {
         return username;
     }
     
+    
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Gets user's password, only if user is already logged in", required = true)
     public String getPassword() {
         if (online) {
             return password;
@@ -89,10 +98,14 @@ public class User implements Comparable<User> {
         return lastName;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Sets user's ShoppingCart. Does not check the parameter", required = true)
     public void setShoppingCart(List<Product> shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns the user's ShoppingCart.", required = true)
     public List<Product> getShoppingCart() {
         return shoppingCart;
     }

@@ -2,7 +2,13 @@ package topic7;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.Api;
+
+
+@Api
 public class Product implements Comparable<Product> {
     
     @Id
@@ -15,34 +21,53 @@ public class Product implements Comparable<Product> {
     public Product(String name, int price, String category, String description) {
         this.name = name;
         this.price = price;
+        if (price < 0)
+            this.price = 0;
         this.category = category;
         this.description = description;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns Product's unique name", required = true)
     public String getName() {
         return name;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Sets product's price to the given parameter only " + 
+        "if it is positive. Sets price to 0 otherwise", required = true)
     public void setPrice(int price) {
-        this.price = price;
+        if (price > 0) {
+            this.price = price;
+        }
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns the price", required = true)
     public int getPrice() {
         return price;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Sets the category. Doesn't check the parameter", required = true)
     public void setCategory(String category) {
         this.category = category;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns the category", required = true)
     public String getCategory() {
         return category;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Sets the description", required = true)
     public void setDescription(String description) {
         this.description = description;
     }
     
+    @JsonProperty(required = true)
+    @ApiModelProperty(notes = "Returns product's description", required = true)
     public String getDescription() {
         return description;
     }
