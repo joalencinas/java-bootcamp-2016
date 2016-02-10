@@ -3,6 +3,8 @@ package topic7;
 import static springfox.documentation.builders.PathSelectors.regex;
 import org.springframework.context.annotation.Bean;
 
+import com.google.common.base.Predicates;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import com.google.common.base.Predicate;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -26,6 +28,7 @@ public class SwaggerConfig {
                 .groupName("topic7")
                 .apiInfo(apiInfo())
                 .select()
+                .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
                 .paths(regex("/ShoppingCartAPI.*"))
                 .build();
     }
