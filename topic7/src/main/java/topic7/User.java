@@ -9,9 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.Api;
 
-@Api
+
 public class User implements Comparable<User> {
     
     @Id

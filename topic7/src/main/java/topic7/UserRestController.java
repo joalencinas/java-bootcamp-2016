@@ -38,10 +38,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ResponseHeader;
+import io.swagger.annotations.Api;
 
 
 @RestController
 @RequestMapping("/users")
+@Api(value = "User", description = "All user's operations")
 class UserRestController {
     
     private final UserRepository userRepository;
