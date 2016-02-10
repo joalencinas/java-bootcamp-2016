@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,7 +16,7 @@ public class User implements Comparable<User> {
     @Id
     private final String username;
     
-    @JsonIgnore
+    @JsonProperty(access = Access.WRITE_ONLY)
     private final String password;
     
     private String firstName;
